@@ -1,6 +1,6 @@
 import React from "react";
 import "components/DayListItem.scss"
-var classnames = require('classnames');
+var classNames = require('classnames');
 
 export default function DayListItem(props) {
   const formatSpots = () => { // props.spot is #
@@ -13,7 +13,7 @@ export default function DayListItem(props) {
     }
   }
 
-  const dayClass = classnames("day-list", {
+  const dayClass = classNames("day-list", {
     'day-list__item': true,
     'day-list__item--selected': props.selected,
     "day-list__item--full": props.spots===0 ? true:false
