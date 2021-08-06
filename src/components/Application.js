@@ -5,8 +5,6 @@ import "components/Application.scss";
 import DayList from "components/DayList";
 import Appointment from "components/Appointment";
 
-const [days, setDays] = useState([]);
-
 const appointments = [
   {
     id: 1,
@@ -63,7 +61,7 @@ export default function Application(props) {
   const [days, setDays] = useState([]);
 
   useEffect(() => {
-    axios.get('api/days')
+    axios.get('/api/days')
     .then(res => setDays(res.data))
     .catch(err => console.log(err))
   },[])
