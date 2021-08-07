@@ -54,4 +54,4 @@ test("getAppointmentsForDay returns an empty array when the days data is empty",
 test("getAppointmentsForDay returns an empty array when the day is not found", () => {
   const result = getAppointmentsForDay(state, "Wednesday");
   expect(result.length).toEqual(0);
-});
+}); 
