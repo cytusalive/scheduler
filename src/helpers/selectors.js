@@ -1,28 +1,46 @@
-export function getAppointmentsForDay(state, day) {
-  let output = [];
-
-  if(state.days.length === 0){
-    return output;
-  }
-  const filteredDay = state.days.filter(data => data.name === day)
-
-  if(Object.keys(filteredDay).length) {
-    const mappedAppointments = filteredDay[0].appointments.map (el => state.appointments[el])
-    output = mappedAppointments;
+export const getAppointmentsForDay = (state, weekDay) => {
+  if (!state.days.length) {
+    return [];
   }
 
-  return output;
-} 
+  const { days, appointments } = state;
 
-export function getInterview(state, interview) {
+  const getAppointments = days.filter((day) => day.name === weekDay);
+
+  if (!getAppointments.length) {
+    return [];
+  }
+
+  return getAppointments[0].appointments.map((id) => appointments[id]);
+};
+
+export const getInterview = (state, interview) => {
   if (!interview) {
     return null;
   }
-  
-  const id = interview.interviewer;
-  const newInterviewObj = {};
-  newInterviewObj.interviewer = state.interviewers[id];
-  newInterviewObj.student = interview.student;
 
-  return newInterviewObj;
-} 
+  const { student, interviewer: id } = interview;
+
+  const newInterview = {
+    student,
+    interviewer: state.interviewers[id],
+  };
+
+  return newInterview
+};
+
+export const getInterviewersForDay = (state, weekDay) => {
+  if (!state.days.length) {
+    return [];
+  }
+  
+  const { days, interviewers } = state;
+
+  const getAppointments = days.filter((day) => day.name === weekDay);
+
+  if (!getAppointments.length){
+    return [];
+  }
+  
+  return getAppointments[0].interviewers.map((id) => interviewers[id]);
+};
